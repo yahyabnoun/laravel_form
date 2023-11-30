@@ -37,6 +37,13 @@ Route::get('/resultats', [StudentController::class, 'resultats']);
 Route::get('/export', [StudentController::class,'export'])->name('export-student');
 
 
+// -----------------------------------------
+
+use App\Models\StudentInterest;
+Route::get('/data', function () {
+    return dd(StudentInterest::all());
+});
+
 
 Route::post('/conference', [ConferenceController::class, 'store'])->name('addconference');
 Route::get('/conference', [ConferenceController::class, 'show'])->name('conference');

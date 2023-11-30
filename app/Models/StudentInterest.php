@@ -11,9 +11,9 @@ class StudentInterest extends Model
 
     protected $table = 'interest_students';
 
-    public function interest_studentid(): HasMany
+    public function student()
     {
-        return $this->hasMany(Student::class, 'interest_studentid', 'id');
+        return $this->belongsTo(Student::class, 'interest_studentid');
     }
 
 
