@@ -6,6 +6,8 @@ use App\Models\Formation;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\StudentsExport;
 
 
 class StudentController extends Controller
@@ -182,5 +184,11 @@ class StudentController extends Controller
     {
         $resultat = Student::paginate(10);
         return view('resultat.index', compact('resultat'));
+    }
+
+
+    public function export()
+    {
+        return Excel::download(new StudentsExport, 'students.xlsx');
     }
 }

@@ -15,7 +15,6 @@ use App\Http\Controllers\ConferenceController;
 |
 */
 
-Route::get('/resultats', [StudentController::class, 'resultats']);
 Route::get('/resultats2', [ConferenceController::class, 'resultats']);
 Route::get('/resultats2-conference', [ConferenceController::class, 'resultatsConference'])->name('resultatsConference');
 Route::get('/changestate/{id}', [ConferenceController::class, 'changeState'])->name('changeState');
@@ -34,6 +33,10 @@ Route::get('/certificate-conference-1/{id}',[ConferenceController::class,'showCe
 // Route::get('/home', [StudentController::class, 'index'])->name('home2');
 Route::post('/', [StudentController::class, 'store'])->name('add');
 Route::get('/', [StudentController::class, 'show'])->name('home');
+Route::get('/resultats', [StudentController::class, 'resultats']);
+Route::get('/export', [StudentController::class,'export'])->name('export-student');
+
+
 
 Route::post('/conference', [ConferenceController::class, 'store'])->name('addconference');
 Route::get('/conference', [ConferenceController::class, 'show'])->name('conference');

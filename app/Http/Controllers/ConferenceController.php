@@ -41,6 +41,10 @@ class ConferenceController extends Controller
 
         return view('resultat.indexConferenceConference', ['resultats' => $resultats, 'search' => request('search')]);
     }
+
+
+
+    
     public function changeState(Request $request, $id)
     {
         if ($request->ajax()) {

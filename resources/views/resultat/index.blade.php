@@ -16,13 +16,9 @@
         <table class="table table-bordered mb-5">
             <thead>
                 <tr class="table-primary">
-                    <th scope="col">#</th>
+                    <th scope="col">id</th>
                     <th scope="col">Nom Complet</th>
                     <th scope="col">Email</th>
-                    <th scope="col">Téléphone</th>
-                    <th scope="col">Activité</th>
-                    <th scope="col">Niveau</th>
-                    <th scope="col">Langue</th>
                     <th scope="col">Date Inscription</th>
                 </tr>
             </thead>
@@ -32,15 +28,12 @@
                     <th scope="row">{{ $data->id }}</th>
                     <td>{{ $data->fullname }}</td>
                     <td>{{ $data->email }}</td>
-                    <td>{{ $data->phone }}</td>
-                    <td>{{ $data->activity }}</td>
-                    <td>{{ $data->niveau }}</td>
-                    <td>{{ $data->langue }}</td>
                     <td>{{ $data->created_at  }}</td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
+        <a class="btn btn-success mb-5" href="{{ route('export-student') }}">Export Conferences</a>
         {{-- Pagination --}}
         <div class="d-flex justify-content-center">
             {!! $resultat->links() !!}

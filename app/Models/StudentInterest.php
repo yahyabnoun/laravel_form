@@ -9,13 +9,12 @@ class StudentInterest extends Model
 {
     use HasFactory;
 
-    protected $table = 'studentInterest';
+    protected $table = 'interest_students';
 
-
-
-    public function students(): HasMany
+    public function interest_studentid(): HasMany
     {
         return $this->hasMany(Student::class, 'interest_studentid', 'id');
     }
+
 
 }
