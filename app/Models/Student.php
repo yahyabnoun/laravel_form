@@ -10,4 +10,10 @@ class Student extends Model
     use HasFactory;
     protected $table = 'students';
 
+
+
+    // public function studentInterest()
+    // {
+    //     return $this->hasMany(StudentInterest::class,'categorie_id');
+    // }
 }

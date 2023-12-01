@@ -11,10 +11,10 @@ class StudentInterest extends Model
 
     protected $table = 'interest_students';
 
-    public function student()
-    {
-        return $this->belongsTo(Student::class, 'interest_studentid');
-    }
+    // public function student()
+    // {
+    //     return $this->belongsTo(Student::class, 'interest_studentid');
+    // }
 
 
 }

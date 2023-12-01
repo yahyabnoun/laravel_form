@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ConferenceController;
+use Illuminate\Support\Facades\DB;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -39,10 +41,34 @@ Route::get('/export', [StudentController::class,'export'])->name('export-student
 
 // -----------------------------------------
 
+
 use App\Models\StudentInterest;
 Route::get('/data', function () {
-    return dd(StudentInterest::all());
+
+    $data = DB::table('students')
+    ->select('students.id' , 'students.fullname' , 'students.email' ,
+    'students.teaching' , 'students.subjectTeaching','students.usedChatGPT' ,
+    DB::raw("group_concat(name_interest SEPARATOR ' , ') as name_interest")
+    ,'students.aiTools', 'students.scheduling', 'students.trainingOnChatGPT'
+    )
+
+    ->join('interest_students','interest_students.interest_studentid','=','students.id')
+
+    ->join('interests','interests.id','=','interest_students.interest_id')
+
+    ->where("interest_students.confirmed", "=", 1)
+
+    // ->select('students.id', 'students.fullname', 'students.email', 'students.teaching', 'students.subjectTeaching', 'students.usedChatGPT', 'students.aiTools', 'students.scheduling', 'students.trainingOnChatGPT', 'interests.name_interest', 'interest_students.confirmed')
+    ->groupBy('students.id' , 'students.fullname' , 'students.email' ,
+      'students.teaching' , 'students.subjectTeaching','students.usedChatGPT' ,'students.aiTools' ,'students.scheduling', 'students.trainingOnChatGPT')
+    ->get();
+    // $data = StudentInterest::where('interest_studentid', 1)->get();
+
+    return dd($data);
 });
+
+// ---------------------
+
 
 
 Route::post('/conference', [ConferenceController::class, 'store'])->name('addconference');
